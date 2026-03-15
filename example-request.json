@@ -1,0 +1,204 @@
+{
+  "input": {
+    "workflow": {
+      "1": {
+        "inputs": {
+          "image": "409d6be3c367834b06bdbda58ca3816b14f9d92c02b2765072f9bde8d69c4857.jpeg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "4": {
+        "inputs": {
+          "pixels": [
+            "1",
+            0
+          ],
+          "vae": [
+            "6",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "5": {
+        "inputs": {
+          "samples": [
+            "13",
+            0
+          ],
+          "vae": [
+            "6",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "6": {
+        "inputs": {
+          "filename": "flux2-vae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "8": {
+        "inputs": {
+          "text": "Convert image to ink wash style",
+          "clip": [
+            "18",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "11": {
+        "inputs": {
+          "conditioning": [
+            "8",
+            0
+          ],
+          "latent": [
+            "4",
+            0
+          ]
+        },
+        "class_type": "ReferenceLatent",
+        "_meta": {
+          "title": "ReferenceLatent"
+        }
+      },
+      "12": {
+        "inputs": {
+          "value": 2.5,
+          "conditioning": [
+            "11",
+            0
+          ]
+        },
+        "class_type": "FluxGuidance",
+        "_meta": {
+          "title": "FluxGuidance"
+        }
+      },
+      "13": {
+        "inputs": {
+          "seed": 0,
+          "steps": 5,
+          "cfg": 1,
+          "sampler_name": "euler",
+          "scheduler": "simple",
+          "denoise": 1,
+          "model": [
+            "17",
+            0
+          ],
+          "positive": [
+            "12",
+            0
+          ],
+          "negative": [
+            "14",
+            0
+          ],
+          "latent_image": [
+            "4",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "14": {
+        "inputs": {
+          "conditioning": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "ConditioningZeroOut",
+        "_meta": {
+          "title": "ConditioningZeroOut"
+        }
+      },
+      "15": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "5",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "17": {
+        "inputs": {
+          "filename": "flux-2-klein-9b.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "18": {
+        "inputs": {
+          "filename": "qwen_3_8b.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "19": {
+        "inputs": {
+          "value": 960
+        },
+        "class_type": "ResizeAndPadImage",
+        "_meta": {
+          "title": "ResizeAndPadImage"
+        }
+      },
+      "20": {
+        "inputs": {},
+        "class_type": "GetImageSize+",
+        "_meta": {
+          "title": "GetImageSize+"
+        }
+      },
+      "21": {
+        "inputs": {
+          "value": 512,
+          "height": [
+            "20",
+            1
+          ],
+          "width": [
+            "20",
+            0
+          ]
+        },
+        "class_type": "JWImageResize",
+        "_meta": {
+          "title": "JWImageResize"
+        }
+      }
+    }
+  }
+}
